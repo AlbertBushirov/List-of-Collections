@@ -1,0 +1,50 @@
+import "./App.scss";
+
+import { Routes, Route } from "react-router-dom";
+import { useState } from "react";
+
+import { QuestionsContainer } from "../QuestionsContainer/QuestionsContainer";
+import { QuestionsPage } from "../../pages/questionsPage/questionsPage";
+import { DetailQuestionPage } from "../../pages/DetailQuestionPage/detailQuestionPage";
+import { Layout } from "../../components/layout/Layout";
+import { useFilterState } from "../../hooks/useFilterState";
+
+function App() {
+  const [filterValues, filterActions] = useFilterState();
+  const [title, setTitle] = useState("React, JavaScript");
+
+  const sharedProps = { filterValues, filterActions, title, setTitle };
+
+  return (
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route
+          path="questions/:spec?"
+          element={<QuestionsContainer {...sharedProps} />}
+        >
+          <Route
+            index
+            element={
+              <QuestionsPage
+                pageNumber={filterValues.pageNumber}
+                setPageNumber={filterActions.setPageNumber}
+                values={filterValues}
+                actions={filterActions}
+                title={title}
+                setTitle={setTitle}
+              />
+            }
+          />
+          <Route
+            path=":title"
+            element={
+              <DetailQuestionPage actions={filterActions} setTitle={setTitle} />
+            }
+          />
+        </Route>
+      </Route>
+    </Routes>
+  );
+}
+
+export default App;

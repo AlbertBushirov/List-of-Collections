@@ -1,0 +1,92 @@
+$bg-main-color: #e0e0e0;
+$bg-color: #ffffff;
+$bg-button-active: #5719e9;
+$bg-footer: #18003e;
+$color-active: #ffffff;
+$hover-button: #6a0bff;
+$border-default: 0.5px solid #e8e8e8;
+$hover-color: #6a0bff;
+$color-a: #6a0bff;
+$color-black: #8c8c8c;
+
+$radius: 12px;
+$font-size: 16px;
+$font-size-f: 12px;
+$font-size-h1: 24px;
+$font-size-s: 14px;
+$font-size-xs: 20px;
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-start {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-space {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin marker-question {
+  content: "";
+  background-repeat: no-repeat;
+  background-position: center;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
+
+.active-link {
+  color: $hover-color;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.server-html-content {
+  display: block !important;
+
+  p {
+    display: block;
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
+
+  strong {
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-weight: 700;
+  }
+
+  pre {
+    display: block;
+    overflow-x: auto;
+    white-space: pre;
+    margin: 15px 0;
+
+    code {
+      display: block;
+      font-family: "Courier New", Courier, monospace;
+    }
+  }
+
+  code {
+    font-family: "Courier New", Courier, monospace;
+    display: inline-block;
+  }
+}

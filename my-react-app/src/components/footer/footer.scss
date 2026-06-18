@@ -1,0 +1,30 @@
+@use "../../styles/variables" as *;
+
+.footer {
+  padding: 40px 60px 18px;
+  background-color: $bg-footer;
+  color: $color-active;
+  &__main {
+    @include flex-column;
+    gap: 12px;
+    padding-bottom: 18px;
+    border-bottom: 0.5px solid white;
+  }
+  &__description {
+    color: $color-black;
+    font-size: $font-size-f;
+  }
+
+  &__meta {
+    @include flex-space;
+    padding-top: 18px;
+    color: $color-black;
+    div {
+      @include flex-center;
+      gap: 8px;
+    }
+    img {
+      width: 28px;
+    }
+  }
+}

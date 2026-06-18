@@ -1,0 +1,57 @@
+@use "../../styles/variables" as *;
+
+.filter {
+  @include flex-column;
+  gap: 24px;
+  max-width: 392px;
+  padding: 24px;
+  background-color: $bg-color;
+  border-radius: $radius;
+  input {
+    height: 48px;
+    border-radius: $radius;
+    border: $border-default;
+    padding: 12px 24px;
+    font-size: $font-size;
+  }
+
+  div {
+    @include flex-column;
+    gap: 8px;
+  }
+
+  ul {
+    max-height: 242px;
+    flex-wrap: wrap;
+    gap: 8px;
+    display: flex;
+    overflow-y: auto;
+  }
+
+  button {
+    padding: 12px;
+    font-size: $font-size;
+  }
+
+  .navigation_link {
+    color: $color-a;
+    width: max-content;
+  }
+  .navigation_link:hover {
+    text-decoration: underline;
+  }
+}
+
+.btn-active {
+  display: inline-block;
+  padding: 10px;
+  border: 1px solid $bg-button-active;
+  border-radius: 12px;
+}
+
+.btn-default {
+  display: inline-block;
+  padding: 10px;
+  border: $border-default;
+  border-radius: 12px;
+}
