@@ -1,7 +1,6 @@
 import { CatalogPagination } from "../../components/CatalogPagination/pagination";
 import { QuestionsList } from "../../components/questionsList/questionsList";
 import { Filter } from "../../components/filter/filter";
-import { useState, useEffect } from "react";
 import { useOutletContext, useParams } from "react-router-dom";
 
 export function QuestionsPage({

@@ -4,10 +4,12 @@ import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 
 import { QuestionsContainer } from "../QuestionsContainer/QuestionsContainer";
+import { Layout } from "../Layout/Layout";
+import { useFilterState } from "../../hooks/useFilterState";
+
 import { QuestionsPage } from "../../pages/questionsPage/questionsPage";
 import { DetailQuestionPage } from "../../pages/DetailQuestionPage/detailQuestionPage";
-import { Layout } from "../../components/layout/Layout";
-import { useFilterState } from "../../hooks/useFilterState";
+import { CollectionsPage } from "../../pages/CollectionsPage/CollectionsPage";
 
 function App() {
   const [filterValues, filterActions] = useFilterState();
@@ -42,6 +44,7 @@ function App() {
             }
           />
         </Route>
+        <Route path="collections" element={<CollectionsPage />}></Route>
       </Route>
     </Routes>
   );

@@ -21,9 +21,7 @@ export function Header() {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/#" className={setActive}>
-                Тренажёр
-              </NavLink>
+              <a href="/#">Тренажёр</a>
             </li>
             <li>
               <NavLink to="/collections" className={setActive}>
@@ -31,9 +29,7 @@ export function Header() {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/#" className={setActive}>
-                Навыки(hh)
-              </NavLink>
+              <a href="/#">Навыки(hh)</a>
             </li>
           </ul>
         </nav>
