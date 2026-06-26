@@ -1,7 +1,17 @@
 import "./pagination.scss";
 
-export function CatalogPagination({ page, total, onChange }) {
-  const getPagination = (total) => {
+type PropsCatalogPagination = {
+  page: number;
+  total: number;
+  onChange: (arg: number | string) => void;
+};
+
+export function CatalogPagination({
+  page,
+  total,
+  onChange,
+}: PropsCatalogPagination) {
+  const getPagination = (total: number) => {
     const pages = [];
 
     if (total <= 7) {

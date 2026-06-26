@@ -29,5 +29,5 @@ export function useFilterState() {
     setPageNumber,
   };
 
-  return [values, actions];
+  return [values, actions] as const;
 }

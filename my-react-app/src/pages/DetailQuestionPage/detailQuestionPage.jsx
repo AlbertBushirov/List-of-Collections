@@ -1,6 +1,7 @@
 import "./detailQuestionPage.scss";
 
 import { QuestionNavigation } from "../../components/QuestionNavigation/QuestionNavigation";
+import { BackButton } from "../../components/BackButton/BackButton";
 import { useQuestionNavigation } from "../../hooks/useQuestionNavigation";
 
 import { useParams, useOutletContext, useNavigate } from "react-router-dom";
@@ -39,9 +40,7 @@ export function DetailQuestionPage() {
 
   return (
     <main>
-      <a onClick={close} style={{ cursor: "pointer" }}>
-        Назад
-      </a>
+      <BackButton onClick={close} style={{ cursor: "pointer" }} />
       <div className="detail_question">
         <div className="detail_question__title_conteiner">
           <h1>{question.title}</h1>

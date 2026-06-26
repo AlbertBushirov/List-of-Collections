@@ -44,7 +44,15 @@ function App() {
             }
           />
         </Route>
-        <Route path="collections" element={<CollectionsPage />}></Route>
+        <Route
+          path="collections"
+          element={
+            <CollectionsPage
+              pageNumber={filterValues.pageNumber}
+              setPageNumber={filterActions.setPageNumber}
+            />
+          }
+        ></Route>
       </Route>
     </Routes>
   );

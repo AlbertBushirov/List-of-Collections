@@ -1,4 +1,4 @@
-import { CatalogPagination } from "../../components/CatalogPagination/pagination";
+import { CatalogPagination } from "../../components/CatalogPagination/CatalogPagination";
 import { QuestionsList } from "../../components/questionsList/questionsList";
 import { Filter } from "../../components/filter/filter";
 import { useOutletContext, useParams } from "react-router-dom";

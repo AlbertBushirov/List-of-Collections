@@ -1,0 +1,11 @@
+type BackButtonProps = {
+  onClick: () => void;
+};
+
+export const BackButton = ({ onClick }: BackButtonProps) => {
+  return (
+    <button type="button" className="question-details__back" onClick={onClick}>
+      <span>Назад</span>
+    </button>
+  );
+};
