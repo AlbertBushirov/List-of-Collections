@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 
 import { QuestionsContainer } from "../QuestionsContainer/QuestionsContainer";
+import { CollectionsLayout } from "../CollectionsLayout/CollectionsLayout";
 import { Layout } from "../Layout/Layout";
 import { useFilterState } from "../../hooks/useFilterState";
 
@@ -45,14 +46,21 @@ function App() {
           />
         </Route>
         <Route
-          path="collections"
-          element={
-            <CollectionsPage
-              pageNumber={filterValues.pageNumber}
-              setPageNumber={filterActions.setPageNumber}
-            />
-          }
-        ></Route>
+          path="collections/:spec?"
+          element={<CollectionsLayout {...sharedProps} />}
+        >
+          <Route
+            index
+            element={
+              <CollectionsPage
+                pageNumber={filterValues.pageNumber}
+                setPageNumber={filterActions.setPageNumber}
+                values={filterValues}
+                actions={filterActions}
+              />
+            }
+          />
+        </Route>
       </Route>
     </Routes>
   );

@@ -1,6 +1,8 @@
 import { CatalogPagination } from "../../components/CatalogPagination/CatalogPagination";
 import { QuestionsList } from "../../components/questionsList/questionsList";
 import { Filter } from "../../components/filter/filter";
+import { HeaderList } from "../../components/HeaderList/HeaderList";
+
 import { useOutletContext, useParams } from "react-router-dom";
 
 export function QuestionsPage({
@@ -13,14 +15,13 @@ export function QuestionsPage({
 }) {
   const { spec } = useParams();
 
-  const { questions, specializations, skills } = useOutletContext();
+  const { questions, specializations, skills, basePath } = useOutletContext();
 
   return (
     <>
       <main>
-        <div className="question_list">
-          <h1>{`Вопросы ${title}`}</h1>
-          <hr />
+        <div className="main_list">
+          <HeaderList title={`Вопросы ${title}`} />
           <QuestionsList spec={spec} questions={questions} />
           <CatalogPagination
             page={pageNumber}
@@ -29,10 +30,12 @@ export function QuestionsPage({
           />
         </div>
         <Filter
+          basePath={basePath}
           values={values}
           actions={actions}
           data={{ specializations, skills }}
           setTitle={setTitle}
+          exclude={[]}
         ></Filter>
       </main>
     </>

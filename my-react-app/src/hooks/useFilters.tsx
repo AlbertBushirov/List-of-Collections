@@ -1,10 +1,17 @@
 import { useState, useEffect } from "react";
-import { useDeBounce } from "./useDebounce";
-import BASE_URL from "../api/url";
 
-export function useFetchData(filters) {
+import BASE_URL from "../api/url.js";
+import { getSpecializations } from "@/api/specializationsApi.js";
+
+import type { Specialization, Filters } from "@/types/filters.js";
+
+import { useDeBounce } from "@/hooks/useDebounce.js";
+
+export function useFilters(filters: Filters) {
   const [questions, setQuestions] = useState(null);
-  const [specializations, setSpecializations] = useState(null);
+  const [specializations, setSpecializations] = useState<
+    Specialization[] | null
+  >(null);
   const [skills, setSkills] = useState(null);
 
   const {
@@ -16,14 +23,14 @@ export function useFetchData(filters) {
     selectedRating,
   } = filters;
 
-  const debouncedKeywords = useDeBounce(filters.keywords, 1500);
+  const debouncedKeywords = useDeBounce(filters.keywords ?? "", 1500);
 
   useEffect(() => {
     const fetchDataSpecializations = async () => {
       try {
-        const response = await fetch("https://api.yeatwork.ru/specializations");
-        const json = await response.json();
-        setSpecializations(json);
+        const data = await getSpecializations();
+
+        setSpecializations(data);
       } catch (error) {
         console.error(error);
       }

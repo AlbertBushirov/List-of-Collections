@@ -1,5 +1,8 @@
 import { useState } from "react";
+
 import { NavLink } from "react-router-dom";
+
+import type { PropsListButtons } from "@/types/ListButtons.js";
 
 export function ListButtons({
   name,
@@ -8,7 +11,8 @@ export function ListButtons({
   selected,
   setSelected,
   setTitle,
-}) {
+  basePath,
+}: PropsListButtons) {
   const [isExpanded, setIsExpanded] = useState(false);
   const allData = Array.isArray(buttons) ? buttons : buttons?.data || [];
   const displayedData = isExpanded ? allData : allData.slice(0, 5);
@@ -24,12 +28,10 @@ export function ListButtons({
               return (
                 <li key={s.id || s.slug}>
                   <NavLink
-                    to={`/questions/${encodeURIComponent(s.slug)}`}
-                    className={({ isActive }) =>
-                      isActive ? "btn-active" : "btn-default"
-                    }
-                    onClick={(e) => {
-                      if (setTitle) setTitle(s.title);
+                    to={`${basePath}/${encodeURIComponent(s.slug ?? "")}`}
+                    className={isSpecActive ? "btn-active" : "btn-default"}
+                    onClick={() => {
+                      if (setTitle) setTitle(String(s.title));
                     }}
                   >
                     {s.title}

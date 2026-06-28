@@ -1,6 +1,6 @@
 @use "../../styles/variables" as *;
 
-.question_list {
+.main_list {
   @include flex-column;
   gap: 16px;
   padding: 24px 20px 40px;

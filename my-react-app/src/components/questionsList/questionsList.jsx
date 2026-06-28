@@ -10,7 +10,7 @@ import "./questionList.scss";
 
 export function QuestionsList({ questions, spec }) {
   return (
-    <ul className="question_list__container">
+    <ul className="main_list__container">
       {questions?.data.map((q) => {
         return (
           <li key={q.title}>

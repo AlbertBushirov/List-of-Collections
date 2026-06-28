@@ -1,22 +1,47 @@
 import BASE_URL from "@/api/url.js";
 
-import { useFilterState } from "@/hooks/useFilterState.js";
+import type { CollectionsResponse } from "@/types/collections.js";
 
-import type {
-  CollectionFilters,
-  CollectionsResponse,
-} from "@/types/collections.js";
-
-type PropsCollections = {
+interface PropsCollections {
   pageNumber: number;
-};
+  keywords?: string;
+  selectedSpec?: string | null;
+  selectedSkill?: string | null;
+  selectedLevels?: string | number | null;
+  selectedRating?: string | number | null;
+}
 
-export const getPublicCollections = async ({
-  pageNumber,
-}: PropsCollections): Promise<CollectionsResponse> => {
-  const response = await fetch(
-    `${BASE_URL}collections/public?page=${pageNumber}&limit=10`,
-  );
+export const getPublicCollections = async (
+  params: PropsCollections,
+): Promise<CollectionsResponse> => {
+  const {
+    pageNumber,
+    keywords,
+    selectedSpec,
+    selectedSkill,
+    selectedLevels,
+    selectedRating,
+  } = params;
+
+  let url = `${BASE_URL}collections/public?page=${pageNumber}&limit=10`;
+
+  if (keywords?.trim()) {
+    url += `&keywords=${encodeURIComponent(keywords)}`;
+  }
+  if (selectedSpec) {
+    url += `&specializationSlug=${selectedSpec}`;
+  }
+  if (selectedSkill) {
+    url += `&skillFilterMode[]=${selectedSkill}`;
+  }
+  if (selectedLevels) {
+    url += `&complexity[]=${selectedLevels}`;
+  }
+  if (selectedRating) {
+    url += `&rate[]=${selectedRating}`;
+  }
+
+  const response = await fetch(url);
 
   if (!response.ok) {
     throw new Error(

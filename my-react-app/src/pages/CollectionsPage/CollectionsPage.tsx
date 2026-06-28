@@ -1,30 +1,46 @@
+import { useOutletContext } from "react-router-dom";
+
 import { useCollectionPage } from "@/hooks/useCollectionsPage.js";
 
-import { CollectionsContainer } from "@/components/CollectionsContainer/CollectionsContainer.js";
+import { CollectionsList } from "@/components/CollectionsList/CollectionsList.js";
 import { CatalogPagination } from "@/components/CatalogPagination/CatalogPagination.js";
+import { Filter } from "@/components/filter/filter.js";
+import type { CollectionsOutletContext } from "@/components/CollectionsLayout/CollectionsLayout.js";
 
-type propsCollectionsPage = {
-  pageNumber: number;
-  setPageNumber: (arg: number | string) => void;
-};
+import type { PropsCollectionsPage } from "@/types/CollectionsPage.js";
 
 export function CollectionsPage({
   setPageNumber,
   pageNumber,
-}: propsCollectionsPage) {
-  const { collectionsData } = useCollectionPage(pageNumber);
-  console.log(collectionsData);
+  values,
+  actions,
+}: PropsCollectionsPage) {
+  const { filterData, baseUrl, currentFilters } =
+    useOutletContext<CollectionsOutletContext>();
+
+  const { collectionsData } = useCollectionPage(currentFilters);
+
   if (!collectionsData?.data) {
     return <div>Загрузка коллекций...</div>;
   }
+
   return (
-    <div className="collections__list">
-      <CollectionsContainer collections={collectionsData?.data} />
-      <CatalogPagination
-        page={pageNumber}
-        total={24}
-        onChange={setPageNumber}
+    <main>
+      <div className="main_list">
+        <CollectionsList collections={collectionsData.data} />
+        <CatalogPagination
+          page={pageNumber}
+          total={9}
+          onChange={setPageNumber}
+        />
+      </div>
+      <Filter
+        basePath={baseUrl}
+        values={values}
+        actions={actions}
+        data={filterData}
+        exclude={["rating", "status", "skills", "levels"]}
       />
-    </div>
+    </main>
   );
 }
